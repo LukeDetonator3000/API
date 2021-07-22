@@ -1,5 +1,5 @@
-import { Category } from "../model/Category"
-import { CategoriesRepository } from "../repositories/CategoriesRepository"
+import { CategoriesRepository } from "../../repositories/CategoriesRepository"
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository"
 
 interface Request {
     name: string;
@@ -10,9 +10,9 @@ interface Request {
  * [x] - Alterar retorno de erro
  * [x] - Acessar repositorio
  */
-class CreateCategoryService {
+class CreateCategoryUseCases {
 
-    constructor(private categoriesRepository: CategoriesRepository) { }
+    constructor(private categoriesRepository: ICategoriesRepository) { }
 
     execute({ description, name }: Request) {
         const categoriesRepository = new CategoriesRepository()
@@ -25,4 +25,4 @@ class CreateCategoryService {
     }
 }
 
-export { CreateCategoryService }
+export { CreateCategoryUseCases }
