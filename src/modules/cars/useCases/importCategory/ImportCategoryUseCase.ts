@@ -1,7 +1,7 @@
 import fs from "fs"
 import csvParse from 'csv-parse'
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
-import { Category } from "../../model/Category";
+import { Category } from "../../entities/Category";
 
 interface IImportCategory {
     name: string;
@@ -26,6 +26,7 @@ class ImporCategoryUseCase {
                     description,
                 });
             }).on("end", () => {
+                fs.promises.unlink(file.path);
                 resolve(categories);
             }).on("error", (erro) => {
                 reject(erro);
